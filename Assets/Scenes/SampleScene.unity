@@ -1176,6 +1176,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa215c016d90a094fb427780b0d856ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 1563373687}
+  sidewaysForce: 300
 --- !u!1 &1696841242
 GameObject:
   m_ObjectHideFlags: 0
