@@ -6,10 +6,14 @@ public class CameraFollow : MonoBehaviour
 {
     [SerializeField] Transform player;
     [SerializeField] Vector3 offset;
+    [SerializeField] float smoothFactor = 0.5f;
+
+    Vector3 smoothPosition = Vector3.zero;
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        transform.position = player.position + offset;
+        smoothPosition = Vector3.Lerp(smoothPosition, player.position, smoothFactor);
+        transform.position = smoothPosition + offset;
     }
 }

@@ -10,6 +10,8 @@ public class WS_Client : MonoBehaviour
     [SerializeField] Rigidbody rb;
 
     [SerializeField] float sidewaysForce = 300f;
+
+    string currentDirection = "MIDDLE";
     void Start()
     {
         // ws = new WebSocket("ws://192.168.1.97:3000");
@@ -40,20 +42,20 @@ public class WS_Client : MonoBehaviour
 
     void OnMessage(object sender, MessageEventArgs e)
     {
-        // StartCoroutine(ApplyForce(e.Data));
 
         Debug.Log("PLSSSSS");
 
 
         if (e.Data == "RIGHT")
         {
-            Debug.Log("Right");
-            rb.AddForce(new Vector3(sidewaysForce * Time.deltaTime, 0, 0), ForceMode.VelocityChange);
+            currentDirection = "RIGHT";
         }
         if (e.Data == "LEFT")
         {
-            Debug.Log("Left");
-            rb.AddForce(new Vector3(-sidewaysForce * Time.deltaTime, 0, 0), ForceMode.VelocityChange);
+            currentDirection = "LEFT";
+        }
+        if (e.Data == "MIDDLE") {
+            currentDirection = "MIDDLE";
         }
     }
 
@@ -63,6 +65,25 @@ public class WS_Client : MonoBehaviour
 
         
     } */
+
+    void FixedUpdate() {
+        if (currentDirection == "MIDDLE") {
+
+        }
+
+        if (currentDirection == "RIGHT")
+        {
+            // Debug.Log("Right");
+            rb.AddForce(new Vector3(sidewaysForce * Time.deltaTime, 0, 0), ForceMode.VelocityChange);
+        }
+        if (currentDirection == "LEFT")
+        {
+            // Debug.Log("Left");
+            rb.AddForce(new Vector3(-sidewaysForce * Time.deltaTime, 0, 0), ForceMode.VelocityChange);
+        }
+
+
+    }
 
     private void OnDestroy()
     {
